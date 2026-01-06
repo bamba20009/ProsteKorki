@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProsteKorki – Oferta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f4f6f8;
+      --bg-card: #ffffff;
+      --accent: #4f46e5;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--bg-card);
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeSlideDown 0.8s forwards;
+    }
+
+    header h1 { font-size: 1.3rem; font-weight: 600; }
+    nav a { margin-left: 24px; text-decoration: none; color: var(--text-main); font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+
+    .hero {
+      padding: 120px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.8s 0.3s forwards;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+    }
+
+    .subject {
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s, transform 0.6s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .subject.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .subject:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .subject h3 { font-size: 2rem; margin-bottom: 20px; }
+    .subject p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #0f172a;
+      color: #cbd5f5;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.8s 0.5s forwards;
+    }
+
+    @keyframes fadeSlideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeSlideDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ProsteKorki</h1>
+  <nav>
+    <a href="index.html">Strona główna</a>
+    <a href="korepetytorzy.html">Korepetytorzy</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Oferta – czego uczymy</h2>
+  <p>W ProsteKorki oferujemy indywidualne lekcje w spokojnej atmosferze. Skupiamy się na tym, żeby materiał był naprawdę zrozumiały.</p>
+</section>
+
+<div class="container">
+  <div class="subject">
+    <h3>Matematyka</h3>
+    <p>Pomagamy z bieżącym materiałem, przygotowujemy do sprawdzianów, egzaminów oraz zagadnień ważnych na egzaminie ósmoklasisty. Wszystko tłumaczymy w prosty i zrozumiały sposób, krok po kroku.</p>
+  </div>
+
+  <div class="subject">
+    <h3>Język angielski</h3>
+    <p>Wsparcie w gramatyce, słownictwie oraz przygotowaniu do testów, sprawdzianów i zagadnień ważnych na egzaminie ósmoklasisty. Lekcje dopasowane do poziomu ucznia, prowadzone w przyjaznej atmosferze.</p>
+  </div>
+
+  <div class="subject">
+    <h3>Historia</h3>
+    <p>Pomoc w nauce historii, zrozumienie wydarzeń i procesów historycznych oraz przygotowanie do klasówek i sprawdzianów.</p>
+  </div>
+
+  <div class="subject">
+    <h3>Biologia</h3>
+    <p>Wyjaśnianie zagadnień biologicznych, przygotowanie do testów i lekcji praktycznych. Uczymy w sposób prosty i zrozumiały.</p>
+  </div>
+</div>
+
+<footer>
+  © 2026 ProsteKorki • Korepetycje online
+</footer>
+
+<script>
+  const subjects = document.querySelectorAll('.subject');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  subjects.forEach(subject => observer.observe(subject));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProsteKorki – Korepetytorzy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #f4f6f8; 
+      color: #0f172a; 
+      line-height: 1.6; 
+      margin: 0; 
+      padding: 0; 
+      opacity: 0;
+      animation: fadeInBody 1s forwards;
+    }
+
+    @keyframes fadeInBody {
+      to { opacity: 1; }
+    }
+
+    header { 
+      background: #fff; 
+      padding: 24px 32px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05); 
+      position: sticky; 
+      top: 0;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    header h1 { font-size: 1.3rem; font-weight: 600; }
+    nav a { margin-left: 24px; text-decoration: none; color: #0f172a; font-weight: 500; transition: color 0.3s; }
+    nav a:hover { color: #4f46e5; }
+
+    .hero { 
+      padding: 120px 20px; 
+      text-align: center; 
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards 0.3s;
+    }
+
+    .hero h2 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
+    .hero p { color: #475569; max-width: 650px; margin: 0 auto 30px; font-size: 1.1rem; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
+
+    .tutor { 
+      display: flex; 
+      flex-direction: row; 
+      align-items: flex-start; 
+      margin-bottom: 60px; 
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards;
+    }
+
+    .tutor:nth-child(1) { animation-delay: 0.5s; }
+    .tutor:nth-child(2) { animation-delay: 0.7s; }
+    .tutor img { width: 150px; height: 150px; object-fit: cover; margin-right: 20px; border-radius: 8px; }
+    .tutor-info h3 { font-size: 2rem; margin-bottom: 8px; }
+    .tutor-info p { color: #475569; margin-bottom: 6px; font-size: 1.05rem; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer { 
+      text-align: center; 
+      padding: 40px 20px; 
+      background: #0f172a; 
+      color: #cbd5f5; 
+      font-size: 0.9rem; 
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s forwards 0.9s;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ProsteKorki</h1>
+  <nav>
+    <a href="index.html">Strona główna</a>
+    <a href="oferta.html">Oferta</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Nasi korepetytorzy</h2>
+  <p>Poznaj osoby, które będą prowadzić zajęcia. Każdy z naszych korepetytorów pracuje w przyjaznej i indywidualnej atmosferze.</p>
+</section>
+
+<div class="container">
+
+  <div class="tutor">
+    <img src="images/tutor1.jpg" alt="Jan Kowalski">
+    <div class="tutor-info">
+      <h3>Jan Kowalski</h3>
+      <p>Wiek: 15 lat</p>
+      <p>Przedmioty: Matematyka, Angielski</p>
+      <p>Ukończona szkoła podstawowa, obecnie uczę się w XXX Liceum</p>
+      <p>Pomaga przygotować się do sprawdzianów oraz zagadnień ważnych na egzaminie ósmoklasisty.</p>
+    </div>
+  </div>
+
+  <div class="tutor">
+    <img src="images/tutor2.jpg" alt="Anna Nowak">
+    <div class="tutor-info">
+      <h3>Anna Nowak</h3>
+      <p>Wiek: 15 lat</p>
+      <p>Przedmioty: Historia, Biologia</p>
+      <p>Ukończona szkoła podstawowa, obecnie uczę się w XXX Liceum</p>
+      <p>Lubi dzielić się wiedzą i pomaga w zrozumieniu trudniejszych zagadnień z historii i biologii.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 ProsteKorki • Korepetycje online
+</footer>
+
+</body>
+</html>

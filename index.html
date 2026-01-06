@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProsteKorki – korepetycje online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f4f6f8;
+      --bg-card: #ffffff;
+      --accent: #4f46e5;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.8s ease;
+    }
+
+    header.show { opacity: 1; transform: translateY(0); }
+
+    header h1 { font-size: 1.3rem; font-weight: 600; }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    .hero {
+      padding: 120px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-main) 100%);
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .hero h2.show { opacity: 1; transform: translateY(0); }
+
+    .hero p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.9s ease;
+      transition-delay: 0.2s;
+    }
+
+    .hero p.show { opacity: 1; transform: translateY(0); }
+
+    .hero .info {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      transition-delay: 0.4s;
+    }
+
+    .hero .info.show { opacity: 1; transform: translateY(0); }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(79,70,229,0.25);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .section-title.show { opacity: 1; transform: translateY(0); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .card.show { opacity: 1; transform: translateY(0); }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .card h4 { margin-bottom: 12px; font-size: 1.2rem; }
+    .card p { color: var(--text-muted); }
+
+    .cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .cta.show { opacity: 1; transform: translateY(0); }
+
+    .cta h3 { font-size: 2.4rem; margin-bottom: 20px; }
+    .cta p { opacity: 0.9; margin-bottom: 30px; }
+
+    .cta .btn { background: #fff; color: var(--accent); }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    input, textarea {
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #cbd5f5;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5f5;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    footer.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ProsteKorki</h1>
+  <nav>
+    <a href="oferta.html">Oferta</a>
+    <a href="korepetytorzy.html">Korepetytorzy</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Proste korepetycje online, które naprawdę pomagają</h2>
+  <p>Indywidualne lekcje prowadzone w spokojnej atmosferze. Skupiamy się na tym, żeby materiał był naprawdę zrozumiały.</p>
+  <div class="info">50 zł / 60 min • Online • Bez abonamentów</div>
+  <a href="#kontakt" class="btn">Umów zajęcia</a>
+</section>
+
+<section class="container">
+  <h3 class="section-title">Dlaczego ProsteKorki?</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>Indywidualne podejście</h4>
+      <p>Każda lekcja jest dopasowana do poziomu i tempa ucznia.</p>
+    </div>
+    <div class="card">
+      <h4>Pełna uwaga</h4>
+      <p>Na zajęciach skupiamy się tylko na uczniu, bez zbędnych przerw i rozpraszających czynników.</p>
+    </div>
+    <div class="card">
+      <h4>Jasne tłumaczenie</h4>
+      <p>Tłumaczymy prosto i zrozumiale, tak żeby naprawdę wszystko było jasne.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="kontakt">
+  <h3>Chcesz zacząć?</h3>
+  <p>Zostaw wiadomość, zadzwoń lub napisz – wszystko ustalimy i dopasujemy najlepiej do Ciebie.</p>
+  <p>Telefon: <strong>576 291 666</strong></p>
+
+  <form action="https://formsubmit.co/kontakt.prostekorki@gmail.com" method="POST">
+    <input type="text" name="name" placeholder="Imię" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <textarea name="message" placeholder="Napisz, z czym potrzebujesz pomocy" required></textarea>
+    <button class="btn" type="submit">Wyślij</button>
+  </form>
+</section>
+
+<footer>
+  © 2026 ProsteKorki • Korepetycje online
+</footer>
+
+<script>
+  const fadeElements = document.querySelectorAll('header, .hero h2, .hero p, .hero .info, .section-title, .card, .cta, footer');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  fadeElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
